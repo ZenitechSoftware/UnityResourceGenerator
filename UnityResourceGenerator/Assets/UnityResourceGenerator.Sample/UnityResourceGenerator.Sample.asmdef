@@ -1,0 +1,15 @@
+{
+    "name": "UnityResourceGenerator.Sample",
+    "references": [
+        "GUID:bf5358081130cea4e8844e0ea5848f6d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
