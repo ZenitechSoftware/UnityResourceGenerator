@@ -6,30 +6,34 @@ using System.Text;
 
 namespace UnityResourceGenerator.Editor.Generation.Modules
 {
-    public sealed class Prefabs : IModuleGenerator
+    public sealed class AllResources : IModuleGenerator
     {
-        public string Generate(ResourceContext context)
+        public string Generate(ResourceContext context) =>
+            new StringBuilder()
+                .AppendLine(Generate(context, "Scenes", "*.unity", false))
+                .AppendLine(Generate(context, "Prefabs", "*.prefab", true))
+                .AppendLine(Generate(context, "Materials", "*.mat", true))
+                .ToString();
+
+        private string Generate(ResourceContext context, string className, string fileExtension, bool isResource)
         {
-            context.Info("Started generating prefabs");
+            context.Info($"Started generating {className}");
 
             // ReSharper disable once MissingIndent
-            const string classBegin =
-@"
-        public static partial class Prefabs
-        {
+            var classBegin =
+$@"
+        public static partial class {className}
+        {{
 ";
             // ReSharper disable once MissingIndent
             const string classEnd = "        }";
 
             var values = Directory
-                .EnumerateFiles(context.AssetsFolder, "*.prefab", SearchOption.AllDirectories)
+                .EnumerateFiles(context.AssetsFolder, fileExtension, SearchOption.AllDirectories)
                 .Select(filePath =>
                 {
-                    var parents = GetAllParentDirectories(filePath);
-                    var resourcesFolder = parents.LastOrDefault(p => p.Name == "Resources");
-                    if (resourcesFolder is null) return (null, null);
-
-                    var baseFolder = resourcesFolder.FullName;
+                    var (canLoad, baseFolder) = GetBaseFolder(filePath, isResource, context);
+                    if (!canLoad) return (null, null);
 
                     var resourcePath = filePath
                         .Replace(baseFolder, string.Empty)
@@ -71,12 +75,24 @@ namespace UnityResourceGenerator.Editor.Generation.Modules
                 .AppendLine(classEnd)
                 .ToString();
 
-            context.Info("Finished generating prefabs");
+            context.Info($"Finished generating {className}");
 
             return output;
         }
 
-        private static List<DirectoryInfo> GetAllParentDirectories(string directoryToScan)
+        private static (bool canLoad, string baseFolder) GetBaseFolder(string filePath, bool isResource, ResourceContext context)
+        {
+            if (!isResource) return (true, context.AssetsFolder);
+
+            var parents = GetAllParentDirectories(filePath);
+            var resourcesFolder = parents.LastOrDefault(p => p.Name == "Resources");
+
+            return resourcesFolder is null
+                ? (false, null)
+                : (true, resourcesFolder.FullName);
+        }
+
+        private static IEnumerable<DirectoryInfo> GetAllParentDirectories(string directoryToScan)
         {
             var ret = new Stack<DirectoryInfo>();
             GetAllParentDirectories(new DirectoryInfo(directoryToScan), ref ret);

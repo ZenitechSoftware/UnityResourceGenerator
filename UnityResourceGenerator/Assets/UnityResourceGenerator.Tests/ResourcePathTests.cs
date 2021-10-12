@@ -20,5 +20,15 @@ namespace UnityResourceGenerator.Tests
             var prefab = Resources.Load<GameObject>(ResourcePaths.Prefabs.Cube);
             Assert.NotNull(prefab);
         }
+
+        [Test]
+        public void MaterialsWork()
+        {
+            var cubeMaterial = Resources.Load<Material>(ResourcePaths.Materials.Cube);
+            Assert.NotNull(cubeMaterial);
+
+            var cubeAltMaterial = Resources.Load<Material>(ResourcePaths.Materials.CubeAlt);
+            Assert.NotNull(cubeAltMaterial);
+        }
     }
 }
