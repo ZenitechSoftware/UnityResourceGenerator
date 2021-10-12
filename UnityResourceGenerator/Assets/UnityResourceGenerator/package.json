@@ -2,9 +2,16 @@
     "name": "com.autsoft.unityresourcegenerator",
     "displayName": "Unity Resource Generator",
     "description": "Generate path strings for Resources.Load",
+    "license": "MIT",
+    "changelogUrl": "https://github.com/AutSoft/UnityResourceGenerator/blob/main/CHANGELOG.md",
     "version": "0.1.0",
+    "keywords": [
+        "Editor",
+        "Resources"
+    ],
     "author": {
         "name": "AutSoft Zrt.",
+        "email": "info@autsoft.hu",
         "url": "https://github.com/AutSoft/UnityResourceGenerator"
     }
 }
