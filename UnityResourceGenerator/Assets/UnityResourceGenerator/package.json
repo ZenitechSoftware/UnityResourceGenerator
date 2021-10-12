@@ -1,0 +1,10 @@
+{
+    "name": "com.autsoft.unityresourcegenerator",
+    "displayName": "Unity Resource Generator",
+    "description": "Generate path strings for Resources.Load",
+    "version": "0.1.0",
+    "author": {
+        "name": "AutSoft Zrt.",
+        "url": "https://github.com/AutSoft/UnityResourceGenerator"
+    }
+}
