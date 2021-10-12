@@ -1,13 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace UnityResourceGenerator.Generation
+namespace UnityResourceGenerator.Editor.Generation
 {
     public static class ResourceFileGenerator
     {
-        public static void CreateResourceFile(ResourceContext context)
+        public static string CreateResourceFile(ResourceContext context)
         {
             // ReSharper disable once MissingIndent
             const string fileBegin =
@@ -21,8 +20,6 @@ namespace UnityResourceGenerator.Generation
             const string fileEnd =
 @"    }
 }";
-
-            var filePath = Path.GetFullPath(Path.Combine(context.AssetsFolder, context.FolderPath, $"{context.ClassName}.cs"));
 
             var builder = new StringBuilder();
 
@@ -54,18 +51,7 @@ namespace UnityResourceGenerator.Generation
                 .OrderByDescending(p => p.PostProcessPriority)
                 .Aggregate(fileContent, (current, processor) => processor.PostProcess(context, current));
 
-            if (File.Exists(filePath))
-            {
-                var old = File.ReadAllText(filePath);
-                if (old == fileContent)
-                {
-                    context.Info("Resource file did not change");
-                    return;
-                }
-            }
-
-            File.WriteAllText(filePath, fileContent);
-            context.Info($"Created resource file at: {filePath}");
+            return fileContent;
         }
 
         public static string CreateResourcePath(string filePath, ResourceContext context) =>

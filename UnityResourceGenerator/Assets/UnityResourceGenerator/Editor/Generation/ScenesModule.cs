@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace UnityResourceGenerator.Generation
+namespace UnityResourceGenerator.Editor.Generation
 {
     public sealed class ScenesModule : IModuleGenerator
     {
