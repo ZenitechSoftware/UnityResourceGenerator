@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityResourceGenerator.Editor.Generation;
@@ -7,22 +8,21 @@ namespace UnityResourceGenerator.Editor
 {
     public static class ResourceFileMenu
     {
-        [MenuItem("Tools / Generate Resources")]
+        [MenuItem("Tools / Generate Resources Paths")]
         public static void GenerateResources()
         {
-            const string baseNamespace = "UnityResourceGenerator.Sample";
-            const string className = "ResourcePaths";
-            const string folderPath = "UnityResourceGenerator.Sample";
+            var settings = ResourceGeneratorSettings.GetOrCreateSettings();
+
             var assetsFolder = Application.dataPath;
 
             var context = new ResourceContext
             (
                 assetsFolder,
-                folderPath,
-                baseNamespace,
-                className,
-                Debug.Log,
-                Debug.LogError
+                settings.FolderPath,
+                settings.BaseNamespace,
+                settings.ClassName,
+                settings.LogInfo ? Debug.Log : LogEmpty,
+                settings.LogError ? Debug.LogError : LogEmpty
             );
 
             var fileContent = ResourceFileGenerator.CreateResourceFile(context);
@@ -42,5 +42,7 @@ namespace UnityResourceGenerator.Editor
             File.WriteAllText(filePath, fileContent);
             context.Info($"Created resource file at: {filePath}");
         }
+
+        private static Action<string> LogEmpty => _ => { };
     }
 }
