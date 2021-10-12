@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace UnityResourceGenerator.Editor.Generation
+namespace UnityResourceGenerator.Editor.Generation.Modules
 {
-    public sealed class ScenesModule : IModuleGenerator
+    public sealed class Scenes : IModuleGenerator
     {
         public string Generate(ResourceContext context)
         {
