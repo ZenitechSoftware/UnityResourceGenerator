@@ -15,5 +15,5 @@ MonoBehaviour:
   _baseNamespace: UnityResourceGenerator.Sample
   _className: ResourcePaths
   _folderPath: UnityResourceGenerator.Sample
-  _logInfo: 0
+  _logInfo: 1
   _logError: 1

@@ -53,11 +53,5 @@ namespace UnityResourceGenerator.Editor.Generation
 
             return fileContent;
         }
-
-        public static string CreateResourcePath(string filePath, ResourceContext context) =>
-            filePath
-                .Replace(context.AssetsFolder, string.Empty)
-                .Replace('\\', '/')
-                .Remove(0, 1);
     }
 }

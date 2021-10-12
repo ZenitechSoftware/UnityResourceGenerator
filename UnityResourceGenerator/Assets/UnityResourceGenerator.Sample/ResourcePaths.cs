@@ -5,7 +5,8 @@ namespace UnityResourceGenerator.Sample
     {
         public static partial class Scenes
         {
-            public const string SampleSceneScene = "UnityResourceGenerator.Sample/Scenes/SampleScene.unity";
+            public const string LoadSceneInitialScene = "UnityResourceGenerator.Sample/Scenes/LoadSceneInitial";
+            public const string LoadSceneNextScene = "UnityResourceGenerator.Sample/Scenes/LoadSceneNext";
         }
     }
 }

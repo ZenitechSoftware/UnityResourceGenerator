@@ -22,11 +22,25 @@ namespace UnityResourceGenerator.Editor.Generation
 
             var values = Directory
                 .EnumerateFiles(context.AssetsFolder, "*.unity", SearchOption.AllDirectories)
-                .Select(p =>
-                (
-                    name: Path.GetFileNameWithoutExtension(p) + "Scene",
-                    path: ResourceFileGenerator.CreateResourcePath(p, context)
-                ))
+                .Select(filePath =>
+                {
+                    var resourcePath = filePath
+                        .Replace(context.AssetsFolder, string.Empty)
+                        .Replace('\\', '/')
+                        .Remove(0, 1);
+
+                    var scenePath = Path.Combine
+                        (
+                            Path.GetDirectoryName(resourcePath) ?? string.Empty,
+                            Path.GetFileNameWithoutExtension(resourcePath)
+                        )
+                        .Replace('\\', '/');
+                    return
+                    (
+                        name: Path.GetFileNameWithoutExtension(filePath) + "Scene",
+                        path: scenePath
+                    );
+                })
                 .ToArray();
 
             var duplicates = values.Duplicates(v => v.name).ToArray();
