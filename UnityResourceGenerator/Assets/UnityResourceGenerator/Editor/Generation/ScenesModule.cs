@@ -9,6 +9,8 @@ namespace UnityResourceGenerator.Editor.Generation
     {
         public string Generate(ResourceContext context)
         {
+            context.Info("Started generating scenes");
+
             // ReSharper disable once MissingIndent
             const string classBegin =
 @"
@@ -35,7 +37,7 @@ namespace UnityResourceGenerator.Editor.Generation
                 throw new InvalidOperationException("Found duplicate file names");
             }
 
-            return values
+            var output = values
                 .Aggregate(
                     new StringBuilder().Append(classBegin),
                     (sb, s) => sb
@@ -46,6 +48,10 @@ namespace UnityResourceGenerator.Editor.Generation
                         .AppendLine("\";"))
                 .AppendLine(classEnd)
                 .ToString();
+
+            context.Info("Finished generating scenes");
+
+            return output;
         }
     }
 }

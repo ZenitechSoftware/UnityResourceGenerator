@@ -25,6 +25,7 @@ namespace UnityResourceGenerator.Editor
                 settings.LogError ? Debug.LogError : LogEmpty
             );
 
+            context.Info("Resource Path generation started");
             var fileContent = ResourceFileGenerator.CreateResourceFile(context);
 
             var filePath = Path.GetFullPath(Path.Combine(context.AssetsFolder, context.FolderPath, $"{context.ClassName}.cs"));
