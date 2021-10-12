@@ -13,7 +13,7 @@ namespace UnityResourceGenerator.Sample
         {
             if (_loadButton == null) throw new InvalidOperationException($"Button is not set on {gameObject.name}");
 
-            _loadButton.onClick.AddListener(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneNextScene));
+            _loadButton.onClick.AddListener(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneNext));
         }
     }
 }

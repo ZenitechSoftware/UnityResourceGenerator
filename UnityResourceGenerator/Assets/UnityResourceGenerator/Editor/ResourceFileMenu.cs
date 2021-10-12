@@ -13,7 +13,7 @@ namespace UnityResourceGenerator.Editor
         {
             var settings = ResourceGeneratorSettings.GetOrCreateSettings();
 
-            var assetsFolder = Application.dataPath;
+            var assetsFolder = Path.GetFullPath(Application.dataPath);
 
             var context = new ResourceContext
             (

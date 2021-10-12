@@ -1,31 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace UnityResourceGenerator.Editor.Generation.Modules
 {
-    public sealed class Scenes : IModuleGenerator
+    public sealed class Prefabs : IModuleGenerator
     {
         public string Generate(ResourceContext context)
         {
-            context.Info("Started generating scenes");
+            context.Info("Started generating prefabs");
 
             // ReSharper disable once MissingIndent
             const string classBegin =
 @"
-        public static partial class Scenes
+        public static partial class Prefabs
         {
 ";
             // ReSharper disable once MissingIndent
             const string classEnd = "        }";
 
             var values = Directory
-                .EnumerateFiles(context.AssetsFolder, "*.unity", SearchOption.AllDirectories)
+                .EnumerateFiles(context.AssetsFolder, "*.prefab", SearchOption.AllDirectories)
                 .Select(filePath =>
                 {
+                    var parents = GetAllParentDirectories(filePath);
+                    var resourcesFolder = parents.LastOrDefault(p => p.Name == "Resources");
+                    if (resourcesFolder is null) return (null, null);
+
+                    var baseFolder = resourcesFolder.FullName;
+
                     var resourcePath = filePath
-                        .Replace(context.AssetsFolder, string.Empty)
+                        .Replace(baseFolder, string.Empty)
                         .Replace('\\', '/')
                         .Remove(0, 1);
 
@@ -41,6 +48,7 @@ namespace UnityResourceGenerator.Editor.Generation.Modules
                         path: resourcePath
                     );
                 })
+                .Where(p => p.name != null)
                 .ToArray();
 
             var duplicates = values.Duplicates(v => v.name).ToArray();
@@ -63,9 +71,24 @@ namespace UnityResourceGenerator.Editor.Generation.Modules
                 .AppendLine(classEnd)
                 .ToString();
 
-            context.Info("Finished generating scenes");
+            context.Info("Finished generating prefabs");
 
             return output;
+        }
+
+        private static List<DirectoryInfo> GetAllParentDirectories(string directoryToScan)
+        {
+            var ret = new Stack<DirectoryInfo>();
+            GetAllParentDirectories(new DirectoryInfo(directoryToScan), ref ret);
+            return ret.ToList();
+        }
+
+        private static void GetAllParentDirectories(DirectoryInfo directoryToScan, ref Stack<DirectoryInfo> directories)
+        {
+            if (directoryToScan == null || directoryToScan.Name == directoryToScan.Root.Name) return;
+
+            directories.Push(directoryToScan);
+            GetAllParentDirectories(directoryToScan.Parent, ref directories);
         }
     }
 }
