@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityResourceGenerator
+namespace UnityResourceGenerator.Generation
 {
     public sealed class ResourceContext
     {

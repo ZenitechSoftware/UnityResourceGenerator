@@ -1,4 +1,4 @@
-﻿namespace UnityResourceGenerator
+﻿namespace UnityResourceGenerator.Generation
 {
     public interface IModuleGenerator
     {

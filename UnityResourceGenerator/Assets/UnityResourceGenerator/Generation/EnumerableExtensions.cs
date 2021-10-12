@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UnityResourceGenerator
+namespace UnityResourceGenerator.Generation
 {
     internal static class EnumerableExtensions
     {

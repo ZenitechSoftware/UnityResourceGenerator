@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace UnityResourceGenerator
+namespace UnityResourceGenerator.Generation
 {
     public sealed class RemoveUnnecessaryNewLines : IResourcePostProcessor
     {
