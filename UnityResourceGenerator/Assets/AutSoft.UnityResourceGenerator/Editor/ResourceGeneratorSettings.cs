@@ -15,21 +15,24 @@ namespace AutSoft.UnityResourceGenerator.Editor
             [SerializeField] private string _className = default;
             [SerializeField] private string[] _fileExtensions = default;
             [SerializeField] private bool _isResource = default;
+            [SerializeField] private string _dataType = default;
 
             public ResourceData()
             {
             }
 
-            public ResourceData(string className, string[] fileExtensions, bool isResource)
+            public ResourceData(string className, string[] fileExtensions, bool isResource, string dataType)
             {
                 _className = className;
                 _fileExtensions = fileExtensions;
                 _isResource = isResource;
+                _dataType = dataType;
             }
 
             public string ClassName => _className;
             public IReadOnlyList<string> FileExtensions => _fileExtensions;
             public bool IsResource => _isResource;
+            public string DataType => _dataType;
         }
 
         private const string SettingsPath = "Assets/ResourceGenerator.asset";
@@ -77,13 +80,13 @@ namespace AutSoft.UnityResourceGenerator.Editor
             // https://docs.unity3d.com/Manual/BuiltInImporters.html
             new List<ResourceData>
             {
-                new ResourceData("Scenes", new[]{"*.unity"}, false),
-                new ResourceData("Prefabs", new[]{"*.prefab"}, true),
-                new ResourceData("Materials", new[]{"*.mat"}, true),
-                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav"}, true),
-                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true),
-                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true),
-                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true)
+                new ResourceData("Scenes", new[]{"*.unity"}, false, "Scene"),
+                new ResourceData("Prefabs", new[]{"*.prefab"}, true, "GameObject"),
+                new ResourceData("Materials", new[]{"*.mat"}, true, "Material"),
+                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav"}, true, "AudioClip"),
+                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true, "Sprite"),
+                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true, "TextAsset"),
+                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true, "Font")
             };
 
         [SettingsProvider]

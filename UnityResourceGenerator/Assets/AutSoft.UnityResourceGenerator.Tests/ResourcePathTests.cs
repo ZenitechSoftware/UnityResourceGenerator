@@ -1,7 +1,5 @@
 ﻿using AutSoft.UnityResourceGenerator.Sample;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace AutSoft.UnityResourceGenerator.Tests
 {
@@ -10,34 +8,34 @@ namespace AutSoft.UnityResourceGenerator.Tests
         [Test]
         public void ScenesWork()
         {
-            Assert.DoesNotThrow(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneInitial));
-            Assert.DoesNotThrow(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneNext));
+            Assert.DoesNotThrow(() => ResourcePaths.Scenes.LoadLoadSceneInitial());
+            Assert.DoesNotThrow(() => ResourcePaths.Scenes.LoadLoadSceneNext());
         }
 
         [Test]
         public void PrefabsWork()
         {
-            var prefab = Resources.Load<GameObject>(ResourcePaths.Prefabs.Cube);
+            var prefab = ResourcePaths.Prefabs.LoadCube();
             Assert.NotNull(prefab);
         }
 
         [Test]
         public void MaterialsWork()
         {
-            var cubeMaterial = Resources.Load<Material>(ResourcePaths.Materials.Cube);
+            var cubeMaterial = ResourcePaths.Materials.LoadCube();
             Assert.NotNull(cubeMaterial);
 
-            var cubeAltMaterial = Resources.Load<Material>(ResourcePaths.Materials.CubeAlt);
+            var cubeAltMaterial = ResourcePaths.Materials.LoadCubeAlt();
             Assert.NotNull(cubeAltMaterial);
         }
 
         [Test]
         public void AudioClipsWork()
         {
-            var coin = Resources.Load<AudioClip>(ResourcePaths.AudioClips.Coin);
+            var coin = ResourcePaths.AudioClips.LoadCoin();
             Assert.NotNull(coin);
 
-            var coinSpin = Resources.Load<AudioClip>(ResourcePaths.AudioClips.CoinSpin);
+            var coinSpin = ResourcePaths.AudioClips.LoadCoinSpin();
             Assert.NotNull(coinSpin);
         }
     }

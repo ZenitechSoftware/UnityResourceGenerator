@@ -66,12 +66,22 @@ $@"
             var output = values
                 .Aggregate(
                     new StringBuilder().Append(classBegin),
-                    (sb, s) => sb
-                        .Append("            public const string ")
-                        .Append(s.name)
-                        .Append(" = \"")
-                        .Append(s.path)
-                        .AppendLine("\";"))
+                    (sb, s) =>
+                    {
+                        sb.Append("            public const string ").Append(s.name).Append(" = \"").Append(s.path).AppendLine("\";");
+
+                        if (data.DataType == "Scene")
+                        {
+                            sb.Append("            public static ").Append("void").Append(" Load").Append(s.name).Append("(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadScene(").Append(s.name).AppendLine(", mode);");
+                            sb.Append("            public static ").Append("AsyncOperation").Append(" LoadAsync").Append(s.name).Append("(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadSceneAsync(").Append(s.name).AppendLine(", mode);");
+                        }
+                        else
+                        {
+                            sb.Append("            public static ").Append(data.DataType).Append(" Load").Append(s.name).Append("() => Resources.Load<").Append(data.DataType).Append(">(").Append(s.name).AppendLine(");");
+                        }
+
+                        return sb;
+                    })
                 .AppendLine(classEnd)
                 .ToString();
 

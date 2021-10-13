@@ -11,7 +11,11 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
         {
             // ReSharper disable once MissingIndent
             const string fileBegin =
-@"namespace {0}
+@"
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace {0}
 {
     // ReSharper disable PartialTypeWithSinglePart
     public static partial class {1}
