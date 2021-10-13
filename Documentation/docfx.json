@@ -4,8 +4,9 @@
       "src": [
         {
           "files": [
-            "src/**.csproj"
-          ]
+            "UnityResourceGenerator/AutSoft.UnityResourceGenerator.csproj"
+          ],
+          "src": "../"
         }
       ],
       "dest": "api",
