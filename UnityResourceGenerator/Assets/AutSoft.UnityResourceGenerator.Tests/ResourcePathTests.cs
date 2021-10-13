@@ -30,5 +30,15 @@ namespace AutSoft.UnityResourceGenerator.Tests
             var cubeAltMaterial = Resources.Load<Material>(ResourcePaths.Materials.CubeAlt);
             Assert.NotNull(cubeAltMaterial);
         }
+
+        [Test]
+        public void AudioClipsWork()
+        {
+            var coin = Resources.Load<AudioClip>(ResourcePaths.AudioClips.Coin);
+            Assert.NotNull(coin);
+
+            var coinSpin = Resources.Load<AudioClip>(ResourcePaths.AudioClips.CoinSpin);
+            Assert.NotNull(coinSpin);
+        }
     }
 }

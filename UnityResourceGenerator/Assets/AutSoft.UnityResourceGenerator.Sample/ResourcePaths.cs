@@ -18,5 +18,10 @@ namespace AutSoft.UnityResourceGenerator.Sample
             public const string Cube = "Cube";
             public const string CubeAlt = "CubeAlt";
         }
+        public static partial class AudioClips
+        {
+            public const string Coin = "Coin";
+            public const string CoinSpin = "CoinSpin";
+        }
     }
 }

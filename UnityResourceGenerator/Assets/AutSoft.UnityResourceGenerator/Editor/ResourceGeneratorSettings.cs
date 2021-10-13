@@ -76,6 +76,7 @@ namespace AutSoft.UnityResourceGenerator.Editor
                 new ResourceData("Scenes", new[]{"*.unity"}, false),
                 new ResourceData("Prefabs", new[]{"*.prefab"}, true),
                 new ResourceData("Materials", new[]{"*.mat"}, true),
+                new ResourceData("AudioClips", new[]{"*.aif", "*.wav", "*.mp3", "*.ogg"}, true)
             };
 
             AssetDatabase.CreateAsset(settings, SettingsPath);

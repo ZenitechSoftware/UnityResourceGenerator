@@ -30,3 +30,8 @@ MonoBehaviour:
     _fileExtensions:
     - '*.mat'
     _isResource: 1
+  - _className: AudioClips
+    _fileExtensions:
+    - '*.wav'
+    - '*.mp3'
+    _isResource: 1
