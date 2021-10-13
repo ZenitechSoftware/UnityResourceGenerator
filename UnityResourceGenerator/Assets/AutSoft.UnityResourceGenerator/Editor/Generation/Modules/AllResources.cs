@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutSoft.UnityResourceGenerator.Editor.Generation.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,29 +11,27 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation.Modules
     {
         public string Generate(ResourceContext context) =>
             new StringBuilder()
-                .AppendLine(Generate(context, "Scenes", "*.unity", false))
-                .AppendLine(Generate(context, "Prefabs", "*.prefab", true))
-                .AppendLine(Generate(context, "Materials", "*.mat", true))
+                .AppendMultipleLines(context.Data.Select(d => Generate(context, d)))
                 .ToString();
 
-        private static string Generate(ResourceContext context, string className, string fileExtension, bool isResource)
+        private static string Generate(ResourceContext context, IResourceData data)
         {
-            context.Info($"Started generating {className}");
+            context.Info($"Started generating {data.ClassName}");
 
             // ReSharper disable once MissingIndent
             var classBegin =
 $@"
-        public static partial class {className}
+        public static partial class {data.ClassName}
         {{
 ";
             // ReSharper disable once MissingIndent
             const string classEnd = "        }";
 
             var values = Directory
-                .EnumerateFiles(context.AssetsFolder, fileExtension, SearchOption.AllDirectories)
+                .EnumerateFiles(context.AssetsFolder, data.FileExtension, SearchOption.AllDirectories)
                 .Select(filePath =>
                 {
-                    var (canLoad, baseFolder) = GetBaseFolder(filePath, isResource, context);
+                    var (canLoad, baseFolder) = GetBaseFolder(filePath, data.IsResource, context);
                     if (!canLoad) return (null, null);
 
                     var resourcePath = filePath
@@ -75,7 +74,7 @@ $@"
                 .AppendLine(classEnd)
                 .ToString();
 
-            context.Info($"Finished generating {className}");
+            context.Info($"Finished generating {data.ClassName}");
 
             return output;
         }

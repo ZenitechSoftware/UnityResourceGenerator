@@ -15,5 +15,15 @@ MonoBehaviour:
   _baseNamespace: AutSoft.UnityResourceGenerator.Sample
   _className: ResourcePaths
   _folderPath: AutSoft.UnityResourceGenerator.Sample
-  _logInfo: 1
+  _logInfo: 0
   _logError: 1
+  _data:
+  - _className: Scenes
+    _fileExtension: '*.unity'
+    _isResource: 0
+  - _className: Prefabs
+    _fileExtension: '*.prefab'
+    _isResource: 1
+  - _className: Materials
+    _fileExtension: '*.mat'
+    _isResource: 1

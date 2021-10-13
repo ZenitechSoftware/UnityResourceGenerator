@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutSoft.UnityResourceGenerator.Editor.Generation.Extensions;
+using System;
 using System.Linq;
 using System.Text;
 

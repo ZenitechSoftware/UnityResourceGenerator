@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
@@ -11,7 +12,8 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
             string baseNamespace,
             string className,
             Action<string> info,
-            Action<string> error)
+            Action<string> error,
+            IReadOnlyList<IResourceData> data)
         {
             AssetsFolder = assetsFolder;
             FolderPath = folderPath;
@@ -19,6 +21,7 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
             ClassName = className;
             Info = info;
             Error = error;
+            Data = data;
         }
 
         public string AssetsFolder { get; }
@@ -27,5 +30,7 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
         public string ClassName { get; }
         public Action<string> Info { get; }
         public Action<string> Error { get; }
+
+        public IReadOnlyList<IResourceData> Data { get; }
     }
 }

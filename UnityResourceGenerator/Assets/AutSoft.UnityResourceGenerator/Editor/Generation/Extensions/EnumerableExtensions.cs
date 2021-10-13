@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AutSoft.UnityResourceGenerator.Editor.Generation
+namespace AutSoft.UnityResourceGenerator.Editor.Generation.Extensions
 {
     internal static class EnumerableExtensions
     {
