@@ -20,8 +20,17 @@ namespace AutSoft.UnityResourceGenerator.Sample
         }
         public static partial class AudioClips
         {
-            public const string Coin = "Coin";
             public const string CoinSpin = "CoinSpin";
+            public const string Coin = "Coin";
+        }
+        public static partial class Sprites
+        {
+        }
+        public static partial class TextAssets
+        {
+        }
+        public static partial class Fonts
+        {
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutSoft.UnityResourceGenerator.Editor.Generation;
+﻿using AutSoft.UnityResourceGenerator.Editor.Extensions;
+using AutSoft.UnityResourceGenerator.Editor.Generation;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -51,43 +52,39 @@ namespace AutSoft.UnityResourceGenerator.Editor
         public bool LogError => _logError;
         public IReadOnlyList<ResourceData> Data => _data;
 
-        public static ResourceGeneratorSettings GetOrCreateSettings
-        (
-            string folderPath = null,
-            string baseNamespace = null,
-            string className = null,
-            bool? logInfo = null,
-            bool? logError = null
-        )
+        public static ResourceGeneratorSettings GetOrCreateSettings()
         {
             var settings = AssetDatabase.LoadAssetAtPath<ResourceGeneratorSettings>(SettingsPath);
             if (settings != null) return settings;
 
             settings = CreateInstance<ResourceGeneratorSettings>();
 
-            settings._folderPath = folderPath ?? string.Empty;
-            settings._baseNamespace = baseNamespace ?? "Resources";
-            settings._className = className ?? "ResourcePaths";
-            settings._logInfo = logInfo ?? false;
-            settings._logError = logError ?? true;
+            settings._folderPath = string.Empty;
+            settings._baseNamespace = "Resources";
+            settings._className = "ResourcePaths";
+            settings._logInfo = false;
+            settings._logError = true;
 
-            // https://docs.unity3d.com/Manual/BuiltInImporters.html
-            settings._data = new List<ResourceData>
-            {
-                new ResourceData("Scenes", new[]{"*.unity"}, false),
-                new ResourceData("Prefabs", new[]{"*.prefab"}, true),
-                new ResourceData("Materials", new[]{"*.mat"}, true),
-                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm"}, true),
-                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true),
-                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true),
-                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true)
-            };
+            settings._data = CreateDefaultFileMappings();
 
             AssetDatabase.CreateAsset(settings, SettingsPath);
             AssetDatabase.SaveAssets();
 
             return settings;
         }
+
+        private static List<ResourceData> CreateDefaultFileMappings() =>
+            // https://docs.unity3d.com/Manual/BuiltInImporters.html
+            new List<ResourceData>
+            {
+                new ResourceData("Scenes", new[]{"*.unity"}, false),
+                new ResourceData("Prefabs", new[]{"*.prefab"}, true),
+                new ResourceData("Materials", new[]{"*.mat"}, true),
+                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav"}, true),
+                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true),
+                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true),
+                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true)
+            };
 
         [SettingsProvider]
         public static SettingsProvider CreateSettingsProvider() =>
@@ -103,6 +100,9 @@ namespace AutSoft.UnityResourceGenerator.Editor
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_className)), new GUIContent("Class name"));
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_logInfo)), new GUIContent("Log Infos"));
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_logError)), new GUIContent("Log Errors"));
+
+                    if (GUILayout.Button("Reset file mappings")) settings.FindProperty(nameof(_data)).SetValue(CreateDefaultFileMappings());
+
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_data)), new GUIContent("Data"));
 
                     settings.ApplyModifiedProperties();

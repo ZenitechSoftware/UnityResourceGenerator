@@ -41,6 +41,7 @@ MonoBehaviour:
     - '*.it'
     - '*.s3m'
     - '*.xm'
+    - '*.wav'
     _isResource: 1
   - _className: Sprites
     _fileExtensions:
