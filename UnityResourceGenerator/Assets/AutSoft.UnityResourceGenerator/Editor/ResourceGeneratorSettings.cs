@@ -76,7 +76,10 @@ namespace AutSoft.UnityResourceGenerator.Editor
                 new ResourceData("Scenes", new[]{"*.unity"}, false),
                 new ResourceData("Prefabs", new[]{"*.prefab"}, true),
                 new ResourceData("Materials", new[]{"*.mat"}, true),
-                new ResourceData("AudioClips", new[]{"*.aif", "*.wav", "*.mp3", "*.ogg"}, true)
+                // https://docs.unity3d.com/Manual/AudioFiles.html
+                new ResourceData("AudioClips", new[]{"*.mp3", "*.ogg", "*.wav", "*.aiff", "*.aif", "*.mod", "*.it", "*.s3m", "*.xm"}, true),
+                // https://docs.unity3d.com/Manual/ImportingTextures.html
+                new ResourceData("Sprites", new[]{"*.bmp", "*.exr", "*.gif", "*.hdr", "*.iff", "*.jpg", "*.pict", "*.png", "*.psd", "*.tga", "*.tiff"}, true)
             };
 
             AssetDatabase.CreateAsset(settings, SettingsPath);
