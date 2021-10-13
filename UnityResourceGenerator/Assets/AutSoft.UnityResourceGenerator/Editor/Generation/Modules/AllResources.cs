@@ -63,6 +63,13 @@ $@"
                 throw new InvalidOperationException("Found duplicate file names");
             }
 
+            if (values.Length == 0)
+            {
+                LogFinished();
+
+                return string.Empty;
+            }
+
             var output = values
                 .Aggregate(
                     new StringBuilder().Append(classBegin),
@@ -85,9 +92,11 @@ $@"
                 .AppendLine(classEnd)
                 .ToString();
 
-            context.Info($"Finished generating {data.ClassName}");
+            LogFinished();
 
             return output;
+
+            void LogFinished() => context.Info($"Finished generating {data.ClassName}");
         }
 
         private static (bool canLoad, string baseFolder) GetBaseFolder(string filePath, bool isResource, ResourceContext context)
