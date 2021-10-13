@@ -16,7 +16,7 @@ jobs:
 
       - name: Install Unity
         shell: pwsh
-        run: choco install unity --version=2019.4.0 --no-progress -y --ignore-package-exit-codes=3010
+        run: choco install unity --params="'/InstallationPath:C:\Program Files\Unity\Hub\Editor\2019.4.0f1'" --version=2019.4.0 --no-progress -y --ignore-package-exit-codes=3010
 
       - name: Build DocFX
         shell: pwsh
