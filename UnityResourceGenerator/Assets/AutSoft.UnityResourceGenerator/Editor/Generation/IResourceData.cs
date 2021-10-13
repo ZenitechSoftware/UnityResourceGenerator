@@ -1,9 +1,11 @@
-﻿namespace AutSoft.UnityResourceGenerator.Editor.Generation
+﻿using System.Collections.Generic;
+
+namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
     public interface IResourceData
     {
         string ClassName { get; }
-        string FileExtension { get; }
+        IReadOnlyList<string> FileExtensions { get; }
         bool IsResource { get; }
     }
 }

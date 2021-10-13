@@ -19,11 +19,14 @@ MonoBehaviour:
   _logError: 1
   _data:
   - _className: Scenes
-    _fileExtension: '*.unity'
+    _fileExtensions:
+    - '*.unity'
     _isResource: 0
   - _className: Prefabs
-    _fileExtension: '*.prefab'
+    _fileExtensions:
+    - '*.prefab'
     _isResource: 1
   - _className: Materials
-    _fileExtension: '*.mat'
+    _fileExtensions:
+    - '*.mat'
     _isResource: 1

@@ -12,22 +12,22 @@ namespace AutSoft.UnityResourceGenerator.Editor
         public sealed class ResourceData : IResourceData
         {
             [SerializeField] private string _className = default;
-            [SerializeField] private string _fileExtension = default;
+            [SerializeField] private string[] _fileExtensions = default;
             [SerializeField] private bool _isResource = default;
 
             public ResourceData()
             {
             }
 
-            public ResourceData(string className, string fileExtension, bool isResource)
+            public ResourceData(string className, string[] fileExtensions, bool isResource)
             {
                 _className = className;
-                _fileExtension = fileExtension;
+                _fileExtensions = fileExtensions;
                 _isResource = isResource;
             }
 
             public string ClassName => _className;
-            public string FileExtension => _fileExtension;
+            public IReadOnlyList<string> FileExtensions => _fileExtensions;
             public bool IsResource => _isResource;
         }
 
@@ -42,14 +42,14 @@ namespace AutSoft.UnityResourceGenerator.Editor
 
         [SerializeField] private bool _logInfo;
         [SerializeField] private bool _logError;
-        [SerializeField] private ResourceData[] _data;
+        [SerializeField] private List<ResourceData> _data;
 
         public string FolderPath => _folderPath;
         public string BaseNamespace => _baseNamespace;
         public string ClassName => _className;
         public bool LogInfo => _logInfo;
         public bool LogError => _logError;
-        public ResourceData[] Data => _data;
+        public IReadOnlyList<ResourceData> Data => _data;
 
         public static ResourceGeneratorSettings GetOrCreateSettings
         (
@@ -71,11 +71,11 @@ namespace AutSoft.UnityResourceGenerator.Editor
             settings._logInfo = logInfo ?? false;
             settings._logError = logError ?? true;
 
-            settings._data = new[]
+            settings._data = new List<ResourceData>
             {
-                new ResourceData("Scenes", "*.unity", false),
-                new ResourceData("Prefabs", "*.prefab", true),
-                new ResourceData("Materials", "*.mat", true),
+                new ResourceData("Scenes", new[]{"*.unity"}, false),
+                new ResourceData("Prefabs", new[]{"*.prefab"}, true),
+                new ResourceData("Materials", new[]{"*.mat"}, true),
             };
 
             AssetDatabase.CreateAsset(settings, SettingsPath);

@@ -27,8 +27,9 @@ $@"
             // ReSharper disable once MissingIndent
             const string classEnd = "        }";
 
-            var values = Directory
-                .EnumerateFiles(context.AssetsFolder, data.FileExtension, SearchOption.AllDirectories)
+            var values = data
+                .FileExtensions
+                .SelectMany(ext => Directory.EnumerateFiles(context.AssetsFolder, ext, SearchOption.AllDirectories))
                 .Select(filePath =>
                 {
                     var (canLoad, baseFolder) = GetBaseFolder(filePath, data.IsResource, context);
