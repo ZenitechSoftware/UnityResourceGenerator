@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace UnityResourceGenerator.Sample
+namespace AutSoft.UnityResourceGenerator.Sample
 {
     public sealed class SpawnCubes : MonoBehaviour
     {

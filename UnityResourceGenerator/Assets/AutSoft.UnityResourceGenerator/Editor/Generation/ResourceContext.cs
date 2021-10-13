@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityResourceGenerator.Editor.Generation
+namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
     public sealed class ResourceContext
     {

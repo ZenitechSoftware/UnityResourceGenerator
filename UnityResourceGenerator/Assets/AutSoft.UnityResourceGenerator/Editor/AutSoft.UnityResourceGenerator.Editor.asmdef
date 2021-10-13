@@ -1,5 +1,5 @@
 {
-    "name": "UnityResourceGenerator",
+    "name": "AutSoft.UnityResourceGenerator",
     "references": [],
     "includePlatforms": [
         "Editor"

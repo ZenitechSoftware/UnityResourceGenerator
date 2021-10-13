@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace UnityResourceGenerator.Sample
+namespace AutSoft.UnityResourceGenerator.Sample
 {
-    public sealed class LoadSceneInitial : MonoBehaviour
+    public sealed class LoadSceneNext : MonoBehaviour
     {
         [SerializeField] private Button _loadButton = default;
 
@@ -13,7 +13,7 @@ namespace UnityResourceGenerator.Sample
         {
             if (_loadButton == null) throw new InvalidOperationException($"Button is not set on {gameObject.name}");
 
-            _loadButton.onClick.AddListener(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneInitial));
+            _loadButton.onClick.AddListener(() => SceneManager.LoadScene(ResourcePaths.Scenes.LoadSceneNext));
         }
     }
 }

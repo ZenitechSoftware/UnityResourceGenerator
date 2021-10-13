@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace UnityResourceGenerator.Sample
+namespace AutSoft.UnityResourceGenerator.Sample
 {
     [RequireComponent(typeof(Rigidbody))]
     public sealed class CubeDestroyer : MonoBehaviour

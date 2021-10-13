@@ -1,9 +1,9 @@
 {
-    "name": "UnityResourceGenerator.Tests",
+    "name": "AutSoft.UnityResourceGenerator.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "UnityResourceGenerator.Sample"
+        "AutSoft.UnityResourceGenerator.Sample"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

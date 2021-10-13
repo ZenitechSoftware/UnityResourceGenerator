@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AutSoft.UnityResourceGenerator.Editor.Generation;
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityResourceGenerator.Editor.Generation;
 
-namespace UnityResourceGenerator.Editor
+namespace AutSoft.UnityResourceGenerator.Editor
 {
     public static class ResourceFileMenu
     {

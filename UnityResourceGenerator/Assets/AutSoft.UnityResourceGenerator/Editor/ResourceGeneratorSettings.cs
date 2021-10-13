@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityResourceGenerator.Editor
+namespace AutSoft.UnityResourceGenerator.Editor
 {
     public sealed class ResourceGeneratorSettings : ScriptableObject
     {

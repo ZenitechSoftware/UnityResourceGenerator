@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace UnityResourceGenerator.Editor.Generation
+namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
     public static class ResourceFileGenerator
     {

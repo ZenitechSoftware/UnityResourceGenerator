@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdd186d920f45adb2925f11fda1bdd8, type: 3}
   m_Name: ResourceGenerator
   m_EditorClassIdentifier: 
-  _baseNamespace: UnityResourceGenerator.Sample
+  _baseNamespace: AutSoft.UnityResourceGenerator.Sample
   _className: ResourcePaths
-  _folderPath: UnityResourceGenerator.Sample
+  _folderPath: AutSoft.UnityResourceGenerator.Sample
   _logInfo: 1
   _logError: 1

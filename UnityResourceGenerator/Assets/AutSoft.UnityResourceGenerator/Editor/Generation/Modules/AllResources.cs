@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace UnityResourceGenerator.Editor.Generation.Modules
+namespace AutSoft.UnityResourceGenerator.Editor.Generation.Modules
 {
     public sealed class AllResources : IModuleGenerator
     {
@@ -15,7 +15,7 @@ namespace UnityResourceGenerator.Editor.Generation.Modules
                 .AppendLine(Generate(context, "Materials", "*.mat", true))
                 .ToString();
 
-        private string Generate(ResourceContext context, string className, string fileExtension, bool isResource)
+        private static string Generate(ResourceContext context, string className, string fileExtension, bool isResource)
         {
             context.Info($"Started generating {className}");
 

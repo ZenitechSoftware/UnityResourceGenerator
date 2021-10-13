@@ -1,4 +1,4 @@
-﻿namespace UnityResourceGenerator.Editor.Generation
+﻿namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
     public interface IModuleGenerator
     {

@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using AutSoft.UnityResourceGenerator.Sample;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityResourceGenerator.Sample;
 
-namespace UnityResourceGenerator.Tests
+namespace AutSoft.UnityResourceGenerator.Tests
 {
     public class ResourcePathTests
     {
