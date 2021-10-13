@@ -71,17 +71,16 @@ namespace AutSoft.UnityResourceGenerator.Editor
             settings._logInfo = logInfo ?? false;
             settings._logError = logError ?? true;
 
+            // https://docs.unity3d.com/Manual/BuiltInImporters.html
             settings._data = new List<ResourceData>
             {
                 new ResourceData("Scenes", new[]{"*.unity"}, false),
                 new ResourceData("Prefabs", new[]{"*.prefab"}, true),
                 new ResourceData("Materials", new[]{"*.mat"}, true),
-                // https://docs.unity3d.com/Manual/AudioFiles.html
-                new ResourceData("AudioClips", new[]{"*.mp3", "*.ogg", "*.wav", "*.aiff", "*.aif", "*.mod", "*.it", "*.s3m", "*.xm"}, true),
-                // https://docs.unity3d.com/Manual/ImportingTextures.html
-                new ResourceData("Sprites", new[]{"*.bmp", "*.exr", "*.gif", "*.hdr", "*.iff", "*.jpg", "*.pict", "*.png", "*.psd", "*.tga", "*.tiff"}, true),
-                // https://docs.unity3d.com/Manual/class-TextAsset.html
-                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true)
+                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm"}, true),
+                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true),
+                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true),
+                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true)
             };
 
             AssetDatabase.CreateAsset(settings, SettingsPath);

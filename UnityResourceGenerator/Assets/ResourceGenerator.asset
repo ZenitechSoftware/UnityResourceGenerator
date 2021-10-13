@@ -32,6 +32,50 @@ MonoBehaviour:
     _isResource: 1
   - _className: AudioClips
     _fileExtensions:
-    - '*.wav'
+    - '*.ogg'
+    - '*.aif'
+    - '*.aiff'
+    - '*.flac'
     - '*.mp3'
+    - '*.mod'
+    - '*.it'
+    - '*.s3m'
+    - '*.xm'
+    _isResource: 1
+  - _className: Sprites
+    _fileExtensions:
+    - '*.jpg'
+    - '*.jpeg'
+    - '*.tif'
+    - '*.tiff'
+    - '*.tga'
+    - '*.gif'
+    - '*.png'
+    - '*.psd'
+    - '*.bmp'
+    - '*.iff'
+    - '*.pict'
+    - '*.pic'
+    - '*.pct'
+    - '*.exr'
+    - '*.hdr'
+    _isResource: 1
+  - _className: TextAssets
+    _fileExtensions:
+    - '*.txt'
+    - '*.html'
+    - '*.htm'
+    - '*.xml'
+    - '*.bytes'
+    - '*.json'
+    - '*.csv'
+    - '*.yaml'
+    - '*.fnt'
+    _isResource: 1
+  - _className: Fonts
+    _fileExtensions:
+    - '*.ttf'
+    - '*.dfont'
+    - '*.otf'
+    - '*.ttc'
     _isResource: 1
