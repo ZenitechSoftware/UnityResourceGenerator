@@ -15,7 +15,7 @@ MonoBehaviour:
   _baseNamespace: AutSoft.UnityResourceGenerator.Sample
   _className: ResourcePaths
   _folderPath: AutSoft.UnityResourceGenerator.Sample
-  _logInfo: 0
+  _logInfo: 1
   _logError: 1
   _data:
   - _className: Scenes

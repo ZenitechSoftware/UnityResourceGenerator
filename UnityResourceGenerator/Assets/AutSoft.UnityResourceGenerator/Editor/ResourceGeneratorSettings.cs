@@ -51,18 +51,25 @@ namespace AutSoft.UnityResourceGenerator.Editor
         public bool LogError => _logError;
         public ResourceData[] Data => _data;
 
-        public static ResourceGeneratorSettings GetOrCreateSettings()
+        public static ResourceGeneratorSettings GetOrCreateSettings
+        (
+            string folderPath = null,
+            string baseNamespace = null,
+            string className = null,
+            bool? logInfo = null,
+            bool? logError = null
+        )
         {
             var settings = AssetDatabase.LoadAssetAtPath<ResourceGeneratorSettings>(SettingsPath);
             if (settings != null) return settings;
 
             settings = CreateInstance<ResourceGeneratorSettings>();
 
-            settings._folderPath = string.Empty;
-            settings._baseNamespace = "Resources";
-            settings._className = "ResourcePaths";
-            settings._logInfo = false;
-            settings._logError = true;
+            settings._folderPath = folderPath ?? string.Empty;
+            settings._baseNamespace = baseNamespace ?? "Resources";
+            settings._className = className ?? "ResourcePaths";
+            settings._logInfo = logInfo ?? false;
+            settings._logError = logError ?? true;
 
             settings._data = new[]
             {

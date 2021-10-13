@@ -1,6 +1,8 @@
 {
     "name": "AutSoft.UnityResourceGenerator.Sample",
-    "references": [],
+    "references": [
+        "AutSoft.UnityResourceGenerator"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
