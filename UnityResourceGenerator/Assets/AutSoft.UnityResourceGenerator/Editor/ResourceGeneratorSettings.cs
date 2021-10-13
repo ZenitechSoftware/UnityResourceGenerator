@@ -91,7 +91,7 @@ namespace AutSoft.UnityResourceGenerator.Editor
                 label = "ResourceGenerator",
                 guiHandler = searchContext =>
                 {
-                    var settings = GetSerializedSettings();
+                    var settings = new SerializedObject(GetOrCreateSettings());
 
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_folderPath)), new GUIContent("Folder from Assets"));
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_baseNamespace)), new GUIContent("Namespace"));
@@ -104,7 +104,5 @@ namespace AutSoft.UnityResourceGenerator.Editor
                 },
                 keywords = new HashSet<string>(new[] { "Resource", "Path" }),
             };
-
-        public static SerializedObject GetSerializedSettings() => new SerializedObject(GetOrCreateSettings());
     }
 }
