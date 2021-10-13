@@ -1,0 +1,27 @@
+name: Publish To GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - feature/add-docfx
+
+jobs:
+  Deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build DocFX
+        shell: pwsh
+        run: ./build.ps1 BuildDocs --unity-email $env:UNITY_EMAIL --unity-password $env:UNITY_PASSWORD --unity-serial $env:UNITY_SERIAL --is-ci 
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: Documentation/_site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
