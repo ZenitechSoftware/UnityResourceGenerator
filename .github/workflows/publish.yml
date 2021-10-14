@@ -12,10 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create GitHub Release
-        shell: pwsh
-        run: ./build.ps1 CreateGithubRelease --is-ci
-
       - name: Publish UnityResourceGenerator to OpenUPM
         uses: butlerlogic/action-autotag@stable
         with:
