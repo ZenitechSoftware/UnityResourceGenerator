@@ -15,6 +15,7 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
 namespace {0}
 {
     // ReSharper disable PartialTypeWithSinglePart
+    // ReSharper disable InconsistentNaming
     public static partial class {1}
     {";
 
@@ -27,6 +28,7 @@ namespace {0}
             const string fileBeginNoNamespace =
 @"
 // ReSharper disable PartialTypeWithSinglePart
+// ReSharper disable InconsistentNaming
 public static partial class {1}
 {";
 
