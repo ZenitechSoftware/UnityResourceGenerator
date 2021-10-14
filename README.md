@@ -2,7 +2,7 @@
 
 Automatically generate a helper class for `Resources.Load` in Unity with the press of a button.
 
-![Generate Button](~/images/intro/GenerateButton.png)
+![Generate Button](Documentation/images/intro/GenerateButton.png)
 
 With this folder structure:
 
