@@ -1,4 +1,4 @@
-# Unity Resource Generator
+# Unity Resource Generator [![openupm](https://img.shields.io/npm/v/com.autsoft.unityresourcegenerator?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.autsoft.unityresourcegenerator/) [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/release/AutSoft/UnityResourceGenerator?style=flat)](https://github.com/AutSoft/UnityResourceGenerator/releases/latest) [![Publish](https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish.yml/badge.svg)](https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish.yml) [![Publish To GitHub Pages](https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish-to-gh-pages.yml/badge.svg)](https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish-to-gh-pages.yml)
 
 Automatically generate a helper class for `Resources.Load` in Unity with the press of a button.
 
