@@ -2,6 +2,7 @@
 - Add documentation website
 - Reference documentation in `package.json`
 - Make using namespaces optional
+- Configure using directives
 
 # 0.1.0
 - Add initial project

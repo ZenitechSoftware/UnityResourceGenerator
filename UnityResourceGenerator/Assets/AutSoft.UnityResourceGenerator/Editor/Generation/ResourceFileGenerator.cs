@@ -12,9 +12,6 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
             // ReSharper disable once MissingIndent
             const string fileBeginHasNamespace =
 @"
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 namespace {0}
 {
     // ReSharper disable PartialTypeWithSinglePart
@@ -29,9 +26,6 @@ namespace {0}
             // ReSharper disable once MissingIndent
             const string fileBeginNoNamespace =
 @"
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 // ReSharper disable PartialTypeWithSinglePart
 public static partial class {1}
 {";
@@ -46,6 +40,8 @@ public static partial class {1}
                 .SelectMany(a => a.GetTypes())
                 .Where(t => !t.IsAbstract && !t.IsGenericType && !t.IsInterface)
                 .ToArray();
+
+            builder.AppendMultipleLines(context.Usings.Select(u => $"using {u};"));
 
             builder.AppendLine(
                 (string.IsNullOrWhiteSpace(context.BaseNamespace) ? fileBeginNoNamespace : fileBeginHasNamespace)

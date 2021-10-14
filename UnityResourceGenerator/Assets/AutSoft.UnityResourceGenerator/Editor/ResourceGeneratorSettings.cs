@@ -46,6 +46,7 @@ namespace AutSoft.UnityResourceGenerator.Editor
 
         [SerializeField] private bool _logInfo;
         [SerializeField] private bool _logError;
+        [SerializeField] private List<string> _usings;
         [SerializeField] private List<ResourceData> _data;
 
         public string FolderPath => _folderPath;
@@ -53,6 +54,7 @@ namespace AutSoft.UnityResourceGenerator.Editor
         public string ClassName => _className;
         public bool LogInfo => _logInfo;
         public bool LogError => _logError;
+        public IReadOnlyList<string> Usings => _usings;
         public IReadOnlyList<ResourceData> Data => _data;
 
         public static ResourceGeneratorSettings GetOrCreateSettings()
@@ -68,7 +70,10 @@ namespace AutSoft.UnityResourceGenerator.Editor
             settings._logInfo = false;
             settings._logError = true;
 
-            settings._data = CreateDefaultFileMappings();
+            var (data, usings) = CreateDefaultFileMappings();
+
+            settings._data = data;
+            settings._usings = usings;
 
             AssetDatabase.CreateAsset(settings, SettingsPath);
             AssetDatabase.SaveAssets();
@@ -76,18 +81,25 @@ namespace AutSoft.UnityResourceGenerator.Editor
             return settings;
         }
 
-        private static List<ResourceData> CreateDefaultFileMappings() =>
+        private static (List<ResourceData> data, List<string> usings) CreateDefaultFileMappings() =>
             // https://docs.unity3d.com/Manual/BuiltInImporters.html
-            new List<ResourceData>
-            {
-                new ResourceData("Scenes", new[]{"*.unity"}, false, "Scene"),
-                new ResourceData("Prefabs", new[]{"*.prefab"}, true, "GameObject"),
-                new ResourceData("Materials", new[]{"*.mat"}, true, "Material"),
-                new ResourceData("AudioClips", new[]{"*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav"}, true, "AudioClip"),
-                new ResourceData("Sprites", new[]{"*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr"}, true, "Sprite"),
-                new ResourceData("TextAssets", new[]{"*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt"}, true, "TextAsset"),
-                new ResourceData("Fonts", new[]{"*.ttf", "*.dfont", "*.otf", "*.ttc"}, true, "Font")
-            };
+            (
+                new List<ResourceData>
+                {
+                    new ResourceData("Scenes", new[] { "*.unity" }, false, "Scene"),
+                    new ResourceData("Prefabs", new[] { "*.prefab" }, true, "GameObject"),
+                    new ResourceData("Materials", new[] { "*.mat" }, true, "Material"),
+                    new ResourceData("AudioClips", new[] { "*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav" }, true, "AudioClip"),
+                    new ResourceData("Sprites", new[] { "*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr" }, true, "Sprite"),
+                    new ResourceData("TextAssets", new[] { "*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt" }, true, "TextAsset"),
+                    new ResourceData("Fonts", new[] { "*.ttf", "*.dfont", "*.otf", "*.ttc" }, true, "Font")
+                },
+                new List<string>
+                {
+                    "UnityEngine",
+                    "UnityEngine.SceneManagement",
+                }
+            );
 
         [SettingsProvider]
         public static SettingsProvider CreateSettingsProvider() =>
@@ -104,8 +116,14 @@ namespace AutSoft.UnityResourceGenerator.Editor
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_logInfo)), new GUIContent("Log Infos"));
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_logError)), new GUIContent("Log Errors"));
 
-                    if (GUILayout.Button("Reset file mappings")) settings.FindProperty(nameof(_data)).SetValue(CreateDefaultFileMappings());
+                    if (GUILayout.Button("Reset file mappings"))
+                    {
+                        var (data, usings) = CreateDefaultFileMappings();
+                        settings.FindProperty(nameof(_data)).SetValue(data);
+                        settings.FindProperty(nameof(_usings)).SetValue(usings);
+                    }
 
+                    EditorGUILayout.PropertyField(settings.FindProperty(nameof(_usings)), new GUIContent("Using directives"));
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(_data)), new GUIContent("Data"));
 
                     settings.ApplyModifiedProperties();

@@ -17,6 +17,9 @@ MonoBehaviour:
   _folderPath: AutSoft.UnityResourceGenerator.Sample
   _logInfo: 1
   _logError: 1
+  _usings:
+  - UnityEngine
+  - UnityEngine.SceneManagement
   _data:
   - _className: Scenes
     _fileExtensions:
