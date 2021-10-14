@@ -31,7 +31,7 @@ namespace AutSoft.UnityResourceGenerator.Sample
         }
         public static partial class AudioClips
         {
-            public const string CoinSpin = "CoinSpin";
+            public const string CoinSpin = "Coin Spin";
             public static AudioClip LoadCoinSpin() => Resources.Load<AudioClip>(CoinSpin);
             public const string Coin = "Coin";
             public static AudioClip LoadCoin() => Resources.Load<AudioClip>(Coin);

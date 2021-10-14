@@ -46,9 +46,10 @@ $@"
                             Path.GetFileNameWithoutExtension(resourcePath)
                         )
                         .Replace('\\', '/');
+
                     return
                     (
-                        name: Path.GetFileNameWithoutExtension(filePath),
+                        name: Path.GetFileNameWithoutExtension(filePath).Replace(" ", string.Empty),
                         path: resourcePath,
                         fileExtension: Path.GetExtension(filePath)
                     );
