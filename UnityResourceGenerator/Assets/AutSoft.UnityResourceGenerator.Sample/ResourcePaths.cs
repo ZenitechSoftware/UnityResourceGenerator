@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 namespace AutSoft.UnityResourceGenerator.Sample
 {
     // ReSharper disable PartialTypeWithSinglePart
     // ReSharper disable InconsistentNaming
     public static partial class ResourcePaths
     {
+
         public static partial class Scenes
         {
             public const string CreatePrefab = "AutSoft.UnityResourceGenerator.Sample/Scenes/CreatePrefab";
@@ -18,11 +20,15 @@ namespace AutSoft.UnityResourceGenerator.Sample
             public static void LoadLoadSceneNext(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadScene(LoadSceneNext, mode);
             public static AsyncOperation LoadAsyncLoadSceneNext(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadSceneAsync(LoadSceneNext, mode);
         }
+
+
         public static partial class Prefabs
         {
             public const string Cube = "Cube";
             public static GameObject LoadCube() => Resources.Load<GameObject>(Cube);
         }
+
+
         public static partial class Materials
         {
             public const string Cube = "Cube";
@@ -34,6 +40,8 @@ namespace AutSoft.UnityResourceGenerator.Sample
             public const string LiberationSansSDF_Outline = "Fonts & Materials/LiberationSans SDF - Outline";
             public static Material LoadLiberationSansSDF_Outline() => Resources.Load<Material>(LiberationSansSDF_Outline);
         }
+
+
         public static partial class AudioClips
         {
             public const string CoinSpin = "Coin Spin";
@@ -43,6 +51,9 @@ namespace AutSoft.UnityResourceGenerator.Sample
             public const string Coin = "Coin";
             public static AudioClip LoadCoin() => Resources.Load<AudioClip>(Coin);
         }
+
+
+
         public static partial class TextAssets
         {
             public const string LineBreakingFollowingCharacters = "LineBreaking Following Characters";
@@ -50,5 +61,8 @@ namespace AutSoft.UnityResourceGenerator.Sample
             public const string LineBreakingLeadingCharacters = "LineBreaking Leading Characters";
             public static TextAsset LoadLineBreakingLeadingCharacters() => Resources.Load<TextAsset>(LineBreakingLeadingCharacters);
         }
+
+
+
     }
 }
