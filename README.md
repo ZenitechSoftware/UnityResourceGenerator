@@ -55,7 +55,7 @@ namespace Sample
 
 ## Installation
 
-Either use the `.unitypackage` provided in the releases or use OpenUPM
+Use [OpenUPM](https://openupm.com/) to install the package.
 
 ```
 openupm add com.autsoft.unityresourcegenerator
