@@ -32,8 +32,8 @@ $@"
                 .SelectMany(ext => Directory.EnumerateFiles(context.AssetsFolder, ext, SearchOption.AllDirectories))
                 .Select(filePath =>
                 {
-                    var (canLoad, baseFolder) = GetBaseFolder(filePath, data.IsResource, context);
-                    if (!canLoad) return (null, null);
+                    var (canLoad, baseFolder) = GetBaseFolder(filePath, context, data);
+                    if (!canLoad) return (null, null, null);
 
                     var resourcePath = filePath
                         .Replace(baseFolder, string.Empty)
@@ -46,10 +46,12 @@ $@"
                             Path.GetFileNameWithoutExtension(resourcePath)
                         )
                         .Replace('\\', '/');
+
                     return
                     (
-                        name: Path.GetFileNameWithoutExtension(filePath),
-                        path: resourcePath
+                        name: Path.GetFileNameWithoutExtension(filePath).Replace(" ", string.Empty),
+                        path: resourcePath,
+                        fileExtension: Path.GetExtension(filePath)
                     );
                 })
                 .Where(p => p.name != null)
@@ -77,7 +79,7 @@ $@"
                     {
                         sb.Append("            public const string ").Append(s.name).Append(" = \"").Append(s.path).AppendLine("\";");
 
-                        if (data.DataType == "Scene")
+                        if (s.fileExtension == ".unity")
                         {
                             sb.Append("            public static ").Append("void").Append(" Load").Append(s.name).Append("(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadScene(").Append(s.name).AppendLine(", mode);");
                             sb.Append("            public static ").Append("AsyncOperation").Append(" LoadAsync").Append(s.name).Append("(LoadSceneMode mode = LoadSceneMode.Single) => SceneManager.LoadSceneAsync(").Append(s.name).AppendLine(", mode);");
@@ -99,9 +101,9 @@ $@"
             void LogFinished() => context.Info($"Finished generating {data.ClassName}");
         }
 
-        private static (bool canLoad, string baseFolder) GetBaseFolder(string filePath, bool isResource, ResourceContext context)
+        private static (bool canLoad, string baseFolder) GetBaseFolder(string filePath, ResourceContext context, IResourceData data)
         {
-            if (!isResource) return (true, context.AssetsFolder);
+            if (Path.GetExtension(filePath) == ".unity") return (true, context.AssetsFolder);
 
             var parents = GetAllParentDirectories(filePath);
             var resourcesFolder = parents.LastOrDefault(p => p.Name == "Resources");
