@@ -2,3 +2,5 @@
   href: GettingStarted.md
 - name: Customization
   href: Customization.md
+- name: Extensibility
+  href: Extensibility.md
