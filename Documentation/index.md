@@ -52,3 +52,11 @@ namespace Sample
     }
 }
 ```
+
+## Installation
+
+Use [OpenUPM](https://openupm.com/) to install the package.
+
+```
+openupm add com.autsoft.unityresourcegenerator
+```
