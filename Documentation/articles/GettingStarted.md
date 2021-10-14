@@ -19,3 +19,11 @@ The tool will create new button in the Editor at `Tools / Generate Resource Path
 ![Generate Button](~/images/intro/GenerateButton.png)
 
 If your click the button the helper class will be generated in the root of the `Assets` folder
+
+## Name generation rules
+
+The generated method and filed names are slightly different from the actual file names, because not all valid file names are valid C# identifier names. The following rules apply:
+
+- Whitespaces are removed
+- If the file name starts with a number a `_` character is added to the start of the identifier
+- All non-alphanumeric characters are replaced by the `_` character
