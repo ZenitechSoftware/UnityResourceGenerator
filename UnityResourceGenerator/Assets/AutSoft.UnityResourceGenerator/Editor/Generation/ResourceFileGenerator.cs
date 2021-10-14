@@ -10,11 +10,8 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
         public static string CreateResourceFile(ResourceContext context)
         {
             // ReSharper disable once MissingIndent
-            const string fileBegin =
+            const string fileBeginHasNamespace =
 @"
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 namespace {0}
 {
     // ReSharper disable PartialTypeWithSinglePart
@@ -22,9 +19,18 @@ namespace {0}
     {";
 
             // ReSharper disable once MissingIndent
-            const string fileEnd =
+            const string fileEndHasNamespace =
 @"    }
 }";
+
+            // ReSharper disable once MissingIndent
+            const string fileBeginNoNamespace =
+@"
+// ReSharper disable PartialTypeWithSinglePart
+public static partial class {1}
+{";
+
+            const string fileEndNoNamespace = "}";
 
             var builder = new StringBuilder();
 
@@ -35,10 +41,12 @@ namespace {0}
                 .Where(t => !t.IsAbstract && !t.IsGenericType && !t.IsInterface)
                 .ToArray();
 
+            builder.AppendMultipleLines(context.Usings.Select(u => $"using {u};"));
+
             builder.AppendLine(
-                fileBegin
-                    .Replace("{0}", context.BaseNamespace)
-                    .Replace("{1}", context.ClassName));
+                (string.IsNullOrWhiteSpace(context.BaseNamespace) ? fileBeginNoNamespace : fileBeginHasNamespace)
+                .Replace("{0}", context.BaseNamespace)
+                .Replace("{1}", context.ClassName));
 
             allConcreteTypes
                 .Where(t => t.GetInterfaces().Any(i => typeof(IModuleGenerator).IsAssignableFrom(i)))
@@ -46,7 +54,7 @@ namespace {0}
                 .Select(m => m.Generate(context))
                 .ForEach(m => builder.AppendLine(m));
 
-            builder.AppendLine(fileEnd);
+            builder.AppendLine(string.IsNullOrWhiteSpace(context.BaseNamespace) ? fileEndNoNamespace : fileEndHasNamespace);
 
             var fileContent = builder.ToString();
 

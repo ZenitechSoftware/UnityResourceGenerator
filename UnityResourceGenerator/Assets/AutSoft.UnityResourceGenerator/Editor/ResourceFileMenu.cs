@@ -23,7 +23,8 @@ namespace AutSoft.UnityResourceGenerator.Editor
                 settings.ClassName,
                 settings.LogInfo ? Debug.Log : LogEmpty,
                 settings.LogError ? Debug.LogError : LogEmpty,
-                settings.Data
+                settings.Data,
+                settings.Usings
             );
 
             context.Info("Resource Path generation started");

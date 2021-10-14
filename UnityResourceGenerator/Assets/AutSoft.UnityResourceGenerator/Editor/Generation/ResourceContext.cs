@@ -13,7 +13,8 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
             string className,
             Action<string> info,
             Action<string> error,
-            IReadOnlyList<IResourceData> data)
+            IReadOnlyList<IResourceData> data,
+            IReadOnlyList<string> usings)
         {
             AssetsFolder = assetsFolder;
             FolderPath = folderPath;
@@ -22,6 +23,7 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
             Info = info;
             Error = error;
             Data = data;
+            Usings = usings;
         }
 
         public string AssetsFolder { get; }
@@ -32,5 +34,6 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
         public Action<string> Error { get; }
 
         public IReadOnlyList<IResourceData> Data { get; }
+        public IReadOnlyList<string> Usings { get; }
     }
 }
