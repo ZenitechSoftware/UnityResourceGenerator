@@ -14,24 +14,21 @@ namespace AutSoft.UnityResourceGenerator.Editor
         {
             [SerializeField] private string _className = default;
             [SerializeField] private string[] _fileExtensions = default;
-            [SerializeField] private bool _isResource = default;
             [SerializeField] private string _dataType = default;
 
             public ResourceData()
             {
             }
 
-            public ResourceData(string className, string[] fileExtensions, bool isResource, string dataType)
+            public ResourceData(string className, string[] fileExtensions, string dataType)
             {
                 _className = className;
                 _fileExtensions = fileExtensions;
-                _isResource = isResource;
                 _dataType = dataType;
             }
 
             public string ClassName => _className;
             public IReadOnlyList<string> FileExtensions => _fileExtensions;
-            public bool IsResource => _isResource;
             public string DataType => _dataType;
         }
 
@@ -86,13 +83,13 @@ namespace AutSoft.UnityResourceGenerator.Editor
             (
                 new List<ResourceData>
                 {
-                    new ResourceData("Scenes", new[] { "*.unity" }, false, "Scene"),
-                    new ResourceData("Prefabs", new[] { "*.prefab" }, true, "GameObject"),
-                    new ResourceData("Materials", new[] { "*.mat" }, true, "Material"),
-                    new ResourceData("AudioClips", new[] { "*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav" }, true, "AudioClip"),
-                    new ResourceData("Sprites", new[] { "*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr" }, true, "Sprite"),
-                    new ResourceData("TextAssets", new[] { "*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt" }, true, "TextAsset"),
-                    new ResourceData("Fonts", new[] { "*.ttf", "*.dfont", "*.otf", "*.ttc" }, true, "Font")
+                    new ResourceData("Scenes", new[] { "*.unity" }, "Scene"),
+                    new ResourceData("Prefabs", new[] { "*.prefab" }, "GameObject"),
+                    new ResourceData("Materials", new[] { "*.mat" }, "Material"),
+                    new ResourceData("AudioClips", new[] { "*.ogg", "*.aif", "*.aiff", "*.flac", "*.mp3", "*.mod", "*.it", "*.s3m", "*.xm", "*.wav" }, "AudioClip"),
+                    new ResourceData("Sprites", new[] { "*.jpg", "*.jpeg", "*.tif", "*.tiff", "*.tga", "*.gif", "*.png", "*.psd", "*.bmp", "*.iff", "*.pict", "*.pic", "*.pct", "*.exr", "*.hdr" }, "Sprite"),
+                    new ResourceData("TextAssets", new[] { "*.txt", "*.html", "*.htm", "*.xml", "*.bytes", "*.json", "*.csv", "*.yaml", "*.fnt" }, "TextAsset"),
+                    new ResourceData("Fonts", new[] { "*.ttf", "*.dfont", "*.otf", "*.ttc" }, "Font")
                 },
                 new List<string>
                 {

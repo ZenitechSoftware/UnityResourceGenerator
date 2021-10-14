@@ -27,6 +27,9 @@ The data section describes the automatically generated file mappings. The data i
 
 The default mappings are created from the [Unity documentation](https://docs.unity3d.com/Manual/BuiltInImporters.html). If you know of any valid file mapping that the documentation does not state, please fork and create a Pull Request, or create an [Issue](https://github.com/AutSoft/UnityResourceGenerator/issues/new).
 
+> [!WARNING]
+> Scenes have special handling during the file generation, because of the way scenes paths are used by the SceneManager. Scenes are identified by the file ending `.unity`
+
 ## Extending the generated classes
 
 The generated classes are `partial` by default. This means that if you want to add custom methods, simply create another `partial` class and add your code there.

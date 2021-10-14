@@ -6,7 +6,6 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
     {
         string ClassName { get; }
         IReadOnlyList<string> FileExtensions { get; }
-        bool IsResource { get; }
         string DataType { get; }
     }
 }

@@ -24,17 +24,14 @@ MonoBehaviour:
   - _className: Scenes
     _fileExtensions:
     - '*.unity'
-    _isResource: 0
     _dataType: Scene
   - _className: Prefabs
     _fileExtensions:
     - '*.prefab'
-    _isResource: 1
     _dataType: GameObject
   - _className: Materials
     _fileExtensions:
     - '*.mat'
-    _isResource: 1
     _dataType: Material
   - _className: AudioClips
     _fileExtensions:
@@ -48,7 +45,6 @@ MonoBehaviour:
     - '*.s3m'
     - '*.xm'
     - '*.wav'
-    _isResource: 1
     _dataType: AudioClip
   - _className: Sprites
     _fileExtensions:
@@ -67,7 +63,6 @@ MonoBehaviour:
     - '*.pct'
     - '*.exr'
     - '*.hdr'
-    _isResource: 1
     _dataType: Sprite
   - _className: TextAssets
     _fileExtensions:
@@ -80,7 +75,6 @@ MonoBehaviour:
     - '*.csv'
     - '*.yaml'
     - '*.fnt'
-    _isResource: 1
     _dataType: TextAsset
   - _className: Fonts
     _fileExtensions:
@@ -88,5 +82,4 @@ MonoBehaviour:
     - '*.dfont'
     - '*.otf'
     - '*.ttc'
-    _isResource: 1
     _dataType: Font
