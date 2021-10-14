@@ -63,7 +63,7 @@ namespace AutSoft.UnityResourceGenerator.Editor
             settings = CreateInstance<ResourceGeneratorSettings>();
 
             settings._folderPath = string.Empty;
-            settings._baseNamespace = "Resources";
+            settings._baseNamespace = string.Empty;
             settings._className = "ResourcePaths";
             settings._logInfo = false;
             settings._logError = true;
