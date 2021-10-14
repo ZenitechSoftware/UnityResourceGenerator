@@ -1,3 +1,8 @@
+# 0.3.0
+- Support for files with non-alphanumeric characters
+- Support for file starting with numeric characters
+- Update documentation with name generation rules
+
 # 0.2.0
 - Add documentation website
 - Reference documentation in `package.json`

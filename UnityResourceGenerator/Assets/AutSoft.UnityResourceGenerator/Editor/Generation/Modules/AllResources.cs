@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AutSoft.UnityResourceGenerator.Editor.Generation.Modules
 {
     public sealed class AllResources : IModuleGenerator
     {
+        private static readonly Regex NonAlphaNumeric = new Regex(@"[^a-zA-Z0-9]", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+        private static readonly Regex StartsWithNumber = new Regex(@"^\d", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+
         public string Generate(ResourceContext context) =>
             new StringBuilder()
                 .AppendMultipleLines(context.Data.Select(d => Generate(context, d)))
@@ -47,9 +51,15 @@ $@"
                         )
                         .Replace('\\', '/');
 
+                    var name = Path.GetFileNameWithoutExtension(filePath).Replace(" ", string.Empty);
+
+                    if (StartsWithNumber.IsMatch(name)) name = name.Insert(0, "_");
+
+                    name = NonAlphaNumeric.Replace(name, "_");
+
                     return
                     (
-                        name: Path.GetFileNameWithoutExtension(filePath).Replace(" ", string.Empty),
+                        name,
                         path: resourcePath,
                         fileExtension: Path.GetExtension(filePath)
                     );
