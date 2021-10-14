@@ -17,3 +17,7 @@ jobs:
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           root: "UnityResourceGenerator/Assets/AutSoft.UnityResourceGenerator"
+
+      - name: Create GitHub Release
+        shell: pwsh
+        run: ./build.ps1 CreateGithubRelease --is-ci
