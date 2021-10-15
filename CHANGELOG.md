@@ -1,3 +1,6 @@
+# 1.0.0
+- Version bump, same as 0.5.0 after manual testing
+
 # 0.5.0
 - Normalize line endings to Windows CLRF
 - Add Roslynator suppression to line endings
