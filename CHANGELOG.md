@@ -1,3 +1,7 @@
+# 0.5.0
+- Normalize line endings to Windows CLRF
+- Add Roslynator suppression to line endings
+
 # 0.4.1
 - Add license URL to package
 

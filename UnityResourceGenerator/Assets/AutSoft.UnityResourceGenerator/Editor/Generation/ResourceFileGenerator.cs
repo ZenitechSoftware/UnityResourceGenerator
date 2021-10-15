@@ -2,11 +2,14 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AutSoft.UnityResourceGenerator.Editor.Generation
 {
     public static class ResourceFileGenerator
     {
+        private static readonly Regex NormalizedLineEndings = new Regex(@"\r\n|\n\r|\n|\r", RegexOptions.Compiled, TimeSpan.FromSeconds(10));
+
         public static string CreateResourceFile(ResourceContext context)
         {
             // ReSharper disable once MissingIndent
@@ -17,6 +20,8 @@ namespace {0}
     // ReSharper disable PartialTypeWithSinglePart
     // ReSharper disable InconsistentNaming
     // ReSharper disable IncorrectBlankLinesNearBraces
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable RCS1036 // Remove redundant empty line.
     public static partial class {1}
     {";
 
@@ -31,6 +36,8 @@ namespace {0}
 // ReSharper disable PartialTypeWithSinglePart
 // ReSharper disable InconsistentNaming
 // ReSharper disable IncorrectBlankLinesNearBraces
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable RCS1036 // Remove redundant empty line.
 public static partial class {1}
 {";
 
@@ -62,6 +69,8 @@ public static partial class {1}
                 .Select(t => (IResourcePostProcessor)Activator.CreateInstance(t))
                 .OrderByDescending(p => p.PostProcessPriority)
                 .Aggregate(fileContent, (current, processor) => processor.PostProcess(context, current));
+
+            fileContent = NormalizedLineEndings.Replace(fileContent, "\r\n");
 
             return fileContent;
         }

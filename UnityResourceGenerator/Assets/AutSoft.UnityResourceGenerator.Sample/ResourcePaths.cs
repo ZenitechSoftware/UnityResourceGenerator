@@ -6,6 +6,8 @@ namespace AutSoft.UnityResourceGenerator.Sample
     // ReSharper disable PartialTypeWithSinglePart
     // ReSharper disable InconsistentNaming
     // ReSharper disable IncorrectBlankLinesNearBraces
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable RCS1036 // Remove redundant empty line.
     public static partial class ResourcePaths
     {
         public static partial class Scenes
