@@ -19,13 +19,5 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation.Extensions
             var enumerator = source.GetEnumerator();
             return enumerator.MoveNext() && enumerator.MoveNext();
         }
-
-        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
-        {
-            foreach (var item in enumerable)
-            {
-                action(item);
-            }
-        }
     }
 }
