@@ -10,6 +10,11 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation
     {
         private static readonly Regex NormalizedLineEndings = new Regex(@"\r\n|\n\r|\n|\r", RegexOptions.Compiled, TimeSpan.FromSeconds(10));
 
+        /// <summary>
+        /// Main generator. Loads and calls all implementations of <see cref="IModuleGenerator"/> and <see cref="IResourcePostProcessor"/>
+        /// </summary>
+        /// <param name="context">Resource context from settings</param>
+        /// <returns>The generated file content</returns>
         public static string CreateResourceFile(ResourceContext context)
         {
             // ReSharper disable once MissingIndent

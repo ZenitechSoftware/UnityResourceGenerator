@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace AutSoft.UnityResourceGenerator.Editor.Generation.PostProcessors
 {
+    /// <summary>
+    /// Removes duplicate newlines
+    /// </summary>
     public sealed class RemoveDuplicateNewLines : IResourcePostProcessor
     {
         private static readonly Regex MultipleNewLines = new Regex(@"(?:\r\n|\r(?!\n)|(?!<\r)\n){2,}", RegexOptions.Compiled, TimeSpan.FromSeconds(10));

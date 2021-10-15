@@ -1,3 +1,6 @@
+# 1.0.1
+- Add documentation comments
+
 # 1.0.0
 - Version bump, same as 0.5.0 after manual testing
 
