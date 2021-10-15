@@ -77,7 +77,6 @@
             "enum": [
               "BuildDocs",
               "Compile",
-              "CreateGithubRelease",
               "CreateMetadata",
               "GenerateUnitySolution",
               "Restore",
@@ -94,7 +93,6 @@
             "enum": [
               "BuildDocs",
               "Compile",
-              "CreateGithubRelease",
               "CreateMetadata",
               "GenerateUnitySolution",
               "Restore",
