@@ -1,9 +1,10 @@
 {
     "name": "com.autsoft.unityresourcegenerator",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "displayName": "Unity Resource Generator",
     "description": "Generate path strings for Resources.Load",
     "license": "MIT",
+    "licensesUrl": "https://github.com/AutSoft/UnityResourceGenerator/blob/main/LICENSE.md",
     "changelogUrl": "https://github.com/AutSoft/UnityResourceGenerator/blob/main/CHANGELOG.md",
     "documentationUrl": "https://autsoft.github.io/UnityResourceGenerator/",
     "unity": "2019.4",
