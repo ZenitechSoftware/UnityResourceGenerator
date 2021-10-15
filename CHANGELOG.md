@@ -1,3 +1,6 @@
+# 0.4.1
+- Add license URL to package
+
 # 0.4.0
 - More nicely formatted output
 
