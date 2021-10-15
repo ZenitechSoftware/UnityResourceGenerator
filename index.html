@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Unity Resource Generator     </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Unity Resource Generator     ">
+    <meta name="generator" content="docfx 2.58.4.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="unity-resource-generator-openupm-github-tag-latest-semver-publish-publish-to-github-pages">Unity Resource Generator <a href="https://openupm.com/packages/com.autsoft.unityresourcegenerator/"><img src="https://img.shields.io/npm/v/com.autsoft.unityresourcegenerator?label=openupm&amp;registry_uri=https://package.openupm.com" alt="openupm"></a> <a href="https://github.com/AutSoft/UnityResourceGenerator/releases/latest"><img src="https://img.shields.io/github/v/release/AutSoft/UnityResourceGenerator?style=flat" alt="GitHub tag (latest SemVer)"></a> <a href="https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish.yml"><img src="https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish.yml/badge.svg" alt="Publish"></a> <a href="https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish-to-gh-pages.yml"><img src="https://github.com/AutSoft/UnityResourceGenerator/actions/workflows/publish-to-gh-pages.yml/badge.svg" alt="Publish To GitHub Pages"></a></h1>
+
+<p>Automatically generate a helper class for <code>Resources.Load</code> in Unity with the press of a button.</p>
+<p><img src="images/intro/GenerateButton.png" alt="Generate Button"></p>
+<p>With this folder structure:</p>
+<pre><code>Assets/
+├─ Resources/
+│  ├─ Coin.prefab
+│  ├─ Coin.mp3
+├─ Scenes/
+│  ├─ CoinRain.unity
+</code></pre>
+<p>The following helper class is generated:</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace Sample
+{
+    // ReSharper disable PartialTypeWithSinglePart
+    public static partial class ResourcePaths
+    {
+
+        public static partial class Scenes
+        {
+            public const string CoinRain = &quot;Scenes/CoinRain&quot;;
+
+            public static void LoadCoinRain(LoadSceneMode mode = LoadSceneMode.Single) =&gt;
+                SceneManager.LoadScene(CoinRain, mode);
+
+            public static AsyncOperation LoadAsyncCoinRain(LoadSceneMode mode = LoadSceneMode.Single) =&gt;
+                SceneManager.LoadSceneAsync(CoinRain, mode);
+        }
+
+        public static partial class Prefabs
+        {
+            public const string Coin = &quot;Coin&quot;;
+            public static GameObject LoadCube() =&gt; Resources.Load&lt;GameObject&gt;(Coin);
+        }
+
+        public static partial class AudioClips
+        {
+            public const string Coin = &quot;Coin&quot;;
+            public static AudioClip LoadCoin() =&gt; Resources.Load&lt;AudioClip&gt;(Coin);
+        }
+    }
+}
+</code></pre>
+<h2 id="installation">Installation</h2>
+<p>Use <a href="https://openupm.com/">OpenUPM</a> to install the package.</p>
+<pre><code>openupm add com.autsoft.unityresourcegenerator
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/AutSoft/UnityResourceGenerator/blob/main/Documentation/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <a href="https://autsoft.net/">AutSoft Zrt.</a> Generated By <b>DocFX<b> 
+            
+          </b></b></div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
