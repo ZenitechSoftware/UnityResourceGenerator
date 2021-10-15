@@ -1,6 +1,6 @@
 {
     "name": "com.autsoft.unityresourcegenerator",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "displayName": "Unity Resource Generator",
     "description": "Generate path strings for Resources.Load",
     "license": "MIT",
