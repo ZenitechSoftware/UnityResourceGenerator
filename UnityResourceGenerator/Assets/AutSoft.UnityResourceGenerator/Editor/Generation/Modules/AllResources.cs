@@ -8,6 +8,11 @@ using System.Text.RegularExpressions;
 
 namespace AutSoft.UnityResourceGenerator.Editor.Generation.Modules
 {
+    /// <summary>
+    /// Generates code for all known and loadable Unity resource files.
+    /// Each loadable type is produced as a static class.
+    /// Also creates code for loading scenes
+    /// </summary>
     public sealed class AllResources : IModuleGenerator
     {
         private static readonly Regex NonAlphaNumeric = new Regex(@"[^a-zA-Z0-9]", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
