@@ -1,3 +1,6 @@
+# 0.4.0
+- More nicely formatted output
+
 # 0.3.0
 - Support for files with non-alphanumeric characters
 - Support for file starting with numeric characters

@@ -24,12 +24,12 @@ namespace AutSoft.UnityResourceGenerator.Editor.Generation.Modules
 
             // ReSharper disable once MissingIndent
             var classBegin =
-$@"
-        public static partial class {data.ClassName}
+$@"        public static partial class {data.ClassName}
         {{
+
 ";
             // ReSharper disable once MissingIndent
-            const string classEnd = "        }";
+            const string classEnd = @"        }";
 
             var values = data
                 .FileExtensions
@@ -98,6 +98,8 @@ $@"
                         {
                             sb.Append("            public static ").Append(data.DataType).Append(" Load").Append(s.name).Append("() => Resources.Load<").Append(data.DataType).Append(">(").Append(s.name).AppendLine(");");
                         }
+
+                        sb.AppendLine();
 
                         return sb;
                     })
